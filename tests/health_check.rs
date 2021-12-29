@@ -21,7 +21,7 @@ static TRACING: Lazy<()> = Lazy::new(|| {
 
 pub struct TestApp {
     pub address: String,
-    pub db_pool: PgPool,
+    pub pool: PgPool,
 }
 
 async fn spawn_app() -> TestApp {
@@ -33,14 +33,11 @@ async fn spawn_app() -> TestApp {
 
     let mut configuration = get_configuration().expect("Failed to read configuration.");
     configuration.database.database_name = Uuid::new_v4().to_string();
-    let connection_pool = configure_database(&configuration.database).await;
+    let pool = configure_database(&configuration.database).await;
 
-    let server = run(listener, connection_pool.clone()).expect("Failed to bind address");
+    let server = run(listener, pool.clone()).expect("Failed to bind address");
     tokio::spawn(server);
-    TestApp {
-        address,
-        db_pool: connection_pool,
-    }
+    TestApp { address, pool }
 }
 
 pub async fn configure_database(config: &DatabaseSettings) -> PgPool {
@@ -95,7 +92,7 @@ async fn subscribe_returns_a_200_for_valid_form_data() {
     assert_eq!(200, response.status().as_u16());
 
     let saved = sqlx::query!("SELECT email, name FROM subscriptions")
-        .fetch_one(&app.db_pool)
+        .fetch_one(&app.pool)
         .await
         .expect("Failed to fetch saved subscription.");
 
