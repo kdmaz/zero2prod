@@ -1,3 +1,6 @@
+# docker build --tag zero2prod --file Dockerfile .
+# docker run -p 8000:8000 zero2prod
+
 FROM lukemathwalker/cargo-chef:latest-rust-1.57.0 as chef
 WORKDIR /app
 
