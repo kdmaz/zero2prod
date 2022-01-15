@@ -1,3 +1,4 @@
+# doctl apps create --spec spec.yaml
 name: zero2prod
 
 region: nyc
