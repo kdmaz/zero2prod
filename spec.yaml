@@ -1,4 +1,5 @@
 # doctl apps create --spec spec.yaml
+# DATABASE_URL=<CONNECTION_STRING> sqlx migrate run
 name: zero2prod
 
 region: nyc
