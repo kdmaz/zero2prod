@@ -1,8 +1,8 @@
 use crate::domain::SubscriberEmail;
 use reqwest::{Client, Url};
+use secrecy::ExposeSecret;
 use secrecy::Secret;
 use serde::Serialize;
-use secrecy::ExposeSecret;
 
 #[derive(Clone)]
 pub struct EmailClient {
@@ -42,8 +42,7 @@ impl EmailClient {
         };
         let url = Url::parse(self.base_url.as_str()).unwrap();
         let url = url.join("email").unwrap();
-        self
-            .http_client
+        self.http_client
             .post(url.as_str())
             .header(
                 "X-Postmark-Server-Token",
