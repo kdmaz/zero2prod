@@ -1,0 +1,5 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "matklad.rust-analyzer",
+	"editor.tabSize": 4
+}
