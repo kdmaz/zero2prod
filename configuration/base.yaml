@@ -6,3 +6,6 @@ database:
   username: 'postgres'
   password: 'postgres'
   database_name: 'newsletter'
+email_client:
+  base_url: "https://api.postmark.com"
+  sender_email: "kyle.mazeika@beckshybrids.com"
