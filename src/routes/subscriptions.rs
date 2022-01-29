@@ -58,9 +58,14 @@ pub async fn subscribe(
         return HttpResponse::InternalServerError().finish();
     }
 
-    if send_confirmation_email(&email_client, new_subscriber, &base_url.0, "mytoken")
-        .await
-        .is_err()
+    if send_confirmation_email(
+        &email_client,
+        new_subscriber,
+        &base_url.0,
+        &subscription_token,
+    )
+    .await
+    .is_err()
     {
         return HttpResponse::InternalServerError().finish();
     }
@@ -111,14 +116,13 @@ pub async fn send_confirmation_email(
         Click <a href=\"{}\">here</a> to confirm your subscription.",
         confirmation_link
     );
-    let plain_body = &format!(
-        "Welcome to our newsletter!<br />\
-        Click <a href=\"{}\">here</a> to confirm your subscription.",
+    let plain_body = format!(
+        "Welcome to our newsletter!\nVisit {} to confirm your subscription.",
         confirmation_link
     );
 
     email_client
-        .send_email(new_subscriber.email, "Welcome!", &html_body, plain_body)
+        .send_email(new_subscriber.email, "Welcome!", &html_body, &plain_body)
         .await
 }
 

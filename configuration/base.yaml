@@ -8,7 +8,7 @@ database:
   password: 'postgres'
   database_name: 'newsletter'
 email_client:
-  base_url: "https://api.postmark.com"
-  sender_email: "kyle.mazeika@beckshybrids.com"
+  base_url: "localhost"
+  sender_email: "test@gmail.com"
   authorization_token: "my-secret-token"
   timeout_milliseconds: 10000
