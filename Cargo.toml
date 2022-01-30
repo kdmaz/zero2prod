@@ -30,6 +30,7 @@ unicode-segmentation = "1.8.0"
 validator = "0.14"
 secrecy = { version = "0.8", features = ["serde"] }
 rand = { version = "0.8", features=["std_rng"] }
+thiserror = "1"
 
 # Using table-like toml syntax to avoid a super-long line!
 [dependencies.sqlx]
