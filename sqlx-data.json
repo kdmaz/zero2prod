@@ -1,5 +1,26 @@
 {
   "db": "PostgreSQL",
+  "567460b501a06aad6a209ba3afc0fe359e6cc63aa4b83a1d32af0ef50d6f4e20": {
+    "query": "\n            SELECT user_id\n            FROM users\n            WHERE username = $1 AND password = $2\n        ",
+    "describe": {
+      "columns": [
+        {
+          "ordinal": 0,
+          "name": "user_id",
+          "type_info": "Uuid"
+        }
+      ],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Text"
+        ]
+      },
+      "nullable": [
+        false
+      ]
+    }
+  },
   "6a64d566bf475b7193c1bfcc8c56a7608ebf1c784c879c84c296e9833f0b08c9": {
     "query": "\n            SELECT email\n            FROM subscriptions\n            WHERE status = 'confirmed'\n        ",
     "describe": {
