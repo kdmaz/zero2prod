@@ -1,22 +1,27 @@
 {
   "db": "PostgreSQL",
-  "567460b501a06aad6a209ba3afc0fe359e6cc63aa4b83a1d32af0ef50d6f4e20": {
-    "query": "\n            SELECT user_id\n            FROM users\n            WHERE username = $1 AND password = $2\n        ",
+  "56aa3a3a938f4af79e207ad58ed4d518a844ca1375d633d1991e1a836baa778a": {
+    "query": "\n            SELECT user_id, password_hash\n            FROM users\n            WHERE username = $1\n        ",
     "describe": {
       "columns": [
         {
           "ordinal": 0,
           "name": "user_id",
           "type_info": "Uuid"
+        },
+        {
+          "ordinal": 1,
+          "name": "password_hash",
+          "type_info": "Text"
         }
       ],
       "parameters": {
         "Left": [
-          "Text",
           "Text"
         ]
       },
       "nullable": [
+        false,
         false
       ]
     }
