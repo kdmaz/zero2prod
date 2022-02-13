@@ -34,6 +34,7 @@ thiserror = "1"
 anyhow = "1"
 base64 = "0.13"
 argon2 = { version = "0.3", features = ["std"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
 # Using table-like toml syntax to avoid a super-long line!
 [dependencies.sqlx]
