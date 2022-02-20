@@ -34,8 +34,8 @@ anyhow = "1"
 base64 = "0.13"
 argon2 = { version = "0.3", features = ["std"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
-urlencoding = "2"
-time = "0.3.7"
+actix-web-flash-messages = { version = "=0.3.0", features = ["cookies"] }
+
 
 # Using table-like toml syntax to avoid a super-long line!
 [dependencies.sqlx]
