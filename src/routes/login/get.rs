@@ -1,18 +1,20 @@
-use actix_web::{http::header::ContentType, web, HttpResponse};
+use actix_web::{cookie::Cookie, http::header::ContentType, web, HttpResponse};
 
-#[derive(serde::Deserialize)]
-pub struct QueryParams {
-    error: Option<String>,
-}
-
-pub async fn login_form(query: web::Query<QueryParams>) -> HttpResponse {
-    let error_html = match query.0.error {
+pub async fn login_form(request: web::HttpRequest) -> HttpResponse {
+    let error_html: String = match request.cookie("_flash") {
         None => "".into(),
-        Some(error_message) => format!("<p><i>{}</i></p>", error_message),
+        Some(cookie) => {
+            format!("<p><i>{}</i></p>", cookie.value())
+        }
     };
 
     HttpResponse::Ok()
         .content_type(ContentType::html())
+        .cookie(
+            Cookie::build("_flash", "")
+                .max_age(time::Duration::ZERO)
+                .finish(),
+        )
         .body(format!(
             r#"
             <!DOCTYPE html>
