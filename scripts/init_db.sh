@@ -15,6 +15,22 @@ if ! [ -x "$(command -v sqlx)" ]; then
   exit 1
 fi
 
+# if a redis container is running, print instructions to kill it and exit
+RUNNING_CONTAINER=$(docker ps --filter 'name=redis' --format '{{.ID}}')
+if [[ -n $RUNNING_CONTAINER ]]; then
+  echo >&2 "there is a redis container already running, kill it with"
+  echo >&2 " docker kill ${RUNNING_CONTAINER}"
+  exit 1
+fi
+
+# Launch Redis using Docker
+docker run \
+  -p "6379:6379" \
+  -d \
+  --name "redis_$(date '+%s')" \
+  redis:6
+  >&2 echo "Redis is ready to go!"
+
 # Check if a custom user has been set, otherwise default to 'postgres'
 DB_USER=${POSTGRES_USER:=postgres}
 # Check if a custom password has been set, otherwise default to 'password'
