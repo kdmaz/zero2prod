@@ -35,7 +35,7 @@ base64 = "0.13"
 argon2 = { version = "0.3", features = ["std"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 actix-web-flash-messages = { version = "=0.3.0", features = ["cookies"] }
-
+serde_json = "1"
 
 # Using table-like toml syntax to avoid a super-long line!
 [dependencies.sqlx]
