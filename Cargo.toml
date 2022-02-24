@@ -15,7 +15,7 @@ name = "zero2prod"
 actix-web = "4.0.0-beta.16"
 config = "0.11.0"
 serde = { version = "1.0.115", features = ["derive"]}
-uuid = { version = "0.8.1", features = ["v4"] }
+uuid = { version = "0.8.1", features = ["v4", "serde"] }
 chrono = "0.4.19"
 tracing = { version = "0.1.19", features = ["log"] }
 tracing-futures = "0.2.5"
