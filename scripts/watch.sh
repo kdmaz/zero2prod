@@ -17,4 +17,4 @@ if ! [ -x "$(command -v bunyan)" ]; then
   exit 1
 fi
 
-cargo watch -x check -x clippy -x test -x "run | bunyan"
+cargo watch -x fmt -x check -x clippy -x test -x "run | bunyan"
