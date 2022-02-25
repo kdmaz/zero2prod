@@ -1,13 +1,10 @@
 use crate::session_state::TypedSession;
+use crate::utils::e500;
 use actix_web::http::header::LOCATION;
 use actix_web::{http::header::ContentType, web, HttpResponse};
 use anyhow::Context;
 use sqlx::PgPool;
 use uuid::Uuid;
-
-fn e500<T>(e: T) -> actix_web::error::InternalError<T> {
-    actix_web::error::InternalError::from_response(e, HttpResponse::InternalServerError().finish())
-}
 
 pub async fn admin_dashboard(
     session: TypedSession,
@@ -35,6 +32,10 @@ pub async fn admin_dashboard(
 
                 <body>
                     <p>Welcome {}!</p>
+                    <p>Available actions:</p>
+                    <ol>
+                        <li><a href="/admin/password">Change password</a></li>
+                    </ol>
                 </body>
 
                 </html>
